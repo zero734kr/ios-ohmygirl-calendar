@@ -26,14 +26,38 @@ interface Day {
 
 // returns
 Day[]
+
+// example
+[
+    {
+        day: 1,
+        schedules: [
+            {
+                name: "테스트 스케쥴",
+                members: [
+                    "OH MY GIRL"
+                ],
+                timestamp: 1607207781500,
+                date: "2020-12-05T22:36:33.499Z",
+                content: "테스트 스케쥴 (OH MY GIRL) - PM 3:00 ~"
+            }
+        ]
+    }
+]
 ```
 식으로 돌아옵니다. 
 
 아, 개발자가 아니라서 뭔 말인지 모르겠다고요? 그럼 그냥 들어가서 보시는게 더 이해에 빠를거에요.
 
-## Apple Shortcut to Sync Schedule Calendar to your phone
+## 스케쥴 캘린더를 달력 앱에 연동
 
-### 
+### Synchronizer (스케쥴 달력 연동)
+
+* [설치하기(iOS)](https://www.icloud.com/shortcuts/790a0c1fc08546bb8c7b3e5c922a80f9)
+
+### 달력 이벤트 제거 (필터는 본인이 직접 수정)
+
+* [설치하기(iOS)](https://www.icloud.com/shortcuts/5c8d270f95184fffb0582f9c08737e3f)
 ## FAQ
 ### 왜 만듬?
 

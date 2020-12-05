@@ -30,6 +30,13 @@ const validator = celebrate({
     })
 })
 
+router.get("/getLastDay", (req: Request, res: Response) => {
+    const { year, month } = req.headers
+    const arr = [31, parseInt(moment().format("YYYY")) % 4 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    return res.status(200).send(`${arr[parseInt(moment(new Date(`${year}-${month}-01T22:24:48.281Z`)).format("MM")) - 1]}`)
+})
+
 router.get("/", validator, async (req: Request, res: Response) => {
     const cache: Cache = req.app.get("cache")
     const { year, month, timezone } = req.query
@@ -123,7 +130,7 @@ router.get("/", validator, async (req: Request, res: Response) => {
     const lastDaysOfMonths = [31, parseInt(moment().tz(timezone as string).format("YYYY")) % 4 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     for (const key in columns) result.push(...columns[key])
 
-    if (!cache.get(`calendar/${timezone}`)) cache.set(`calendar/${timezone}`, result.sort((p, n) => p.day > n.day ? 1 : -1).filter(f => f.day <= lastDaysOfMonths[parseInt(moment().format("MM")) - 1]))
+    if (!cache.get(`calendar/${timezone}`)) cache.set(`calendar/${timezone}`, result.sort((p, n) => p.day > n.day ? 1 : -1).filter(f => f.day <= lastDaysOfMonths[parseInt(moment(new Date(`${year}-${month}-01T22:24:48.281Z`)).format("MM")) - 1]))
 
     return res.send(cache.get(`calendar/${timezone}`))
 })
