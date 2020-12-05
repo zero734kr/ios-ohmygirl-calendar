@@ -1,0 +1,29 @@
+{
+  "name": "ohmygirl-calendar-backend",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/src/server",
+  "scripts": {
+    "test": "tsc && nodemon ./dist/src/server",
+    "start": "tsc && node ./dist/src/server"
+  },
+  "dependencies": {
+    "@discordjs/collection": "^0.1.6",
+    "celebrate": "^13.0.4",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "moment-timezone": "^0.5.32",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/cheerio": "^0.22.22",
+    "@types/express": "^4.17.9",
+    "@types/node": "^14.14.10",
+    "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "eslint": "^7.14.0",
+    "typescript": "^4.1.2"
+  }
+}

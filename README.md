@@ -1,2 +1,7 @@
-# ios-ohmygirl-calendar
-나중에 만들거
+
+
+
+### Todo
+
+* type identifier 
+* fix 'null' in timestamp/date
