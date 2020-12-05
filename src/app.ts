@@ -11,8 +11,8 @@ if (!app.get("cache")) app.set("cache", new Cache(60000 * 30))
 
 app.use(express.json())
 
-app.use("/", indexRouter)
-app.use("/calendar", calendarRouter)
+app.use("/api", indexRouter)
+app.use("/api/calendar", calendarRouter)
 
 app.use(errors())
 
