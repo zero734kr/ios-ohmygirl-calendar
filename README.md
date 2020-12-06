@@ -47,30 +47,34 @@ Day[]
 ```
 식으로 돌아옵니다. 
 
-아, 개발자가 아니라서 뭔 말인지 모르겠다고요? 그럼 그냥 들어가서 보시는게 더 이해에 빠를거에요.
+아, 개발자가 아니라서 뭔 말인지 모르겠다고요? 
+
+![screenshot.png](https://media.discordapp.net/attachments/745844596176715806/784941858677194822/unknown.png?width=1596&height=186)
+
+위와 같은 식으로 돌아옵니다.
 
 ## 스케쥴 캘린더를 달력 앱에 연동
 
 ### Synchronizer (스케쥴 달력 연동)
 
-* [설치하기(iOS)](https://www.icloud.com/shortcuts/790a0c1fc08546bb8c7b3e5c922a80f9)
+* [설치하기(iOS)](https://www.icloud.com/shortcuts/7a12fd8075e34d3982a82530c934ebdc)
 
 ### 달력 이벤트 제거 (필터는 본인이 직접 수정)
 
 * [설치하기(iOS)](https://www.icloud.com/shortcuts/5c8d270f95184fffb0582f9c08737e3f)
-## FAQ
-### 왜 만듬?
 
-예, WM이 API 징원 안 해줘요. 그리고 단축어 앱을 이용해서 제 애플 달력 앱이랑 연동하려고요.
+## Contributions
 
-### 굳이?
+### 버그, 수정 요청 등등
 
-우리 옴걸 스케쥴 다 따라가야죠 ㅎㅎ
+* [바로가기](https://github.com/zero734kr/ios-ohmygirl-calendar/issues)
 
-### 코드 왜 이렇게 드러움?
+### 수정 요청
 
-할 일 없을때마다 틈틈히 한거라서 양해 좀요 ㅈㅅㅈㅅ
+할 일 없을때마다 틈틈히 짠거라 코드가 좀 스파게티라서 PR 넣어주시면 감사하겠습니다.
 
-### 아무도 안 쓸거 같은데? 
+* [바로가기](https://github.com/zero734kr/ios-ohmygirl-calendar/pulls)
 
-제가 쓸겁니다.
+### 이 프로젝트가 마음에 든다면?
+
+좌측 상단의 Star 버튼을 눌러주세요!
