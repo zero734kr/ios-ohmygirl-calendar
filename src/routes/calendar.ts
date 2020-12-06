@@ -44,7 +44,7 @@ router.get("/", validator, async (req: Request, res: Response) => {
     if (cache.get("calendar")) return res.send(cache.get("calendar"))
 
     let url = "http://ohmy-girl.com/omg_official/schedule.php"
-    if(year && month) url += `?year=${encodeURI(year as string)}&month=${encodeURI(month as string)}`
+    if (year && month) url += `?year=${encodeURI(year as string)}&month=${encodeURI(month as string)}`
 
     const r = await fetch(url).then(r => r.text())
     const $ = cheerio.load(r)
@@ -111,8 +111,9 @@ router.get("/", validator, async (req: Request, res: Response) => {
                     // @ts-expect-error string to Member
                     else if (membersMatch) members = [membersMatch[0].replace(/\(|\)/gi, "")]
 
-                    const date = new Date(`${year}-${month}-${day < 10 ? `0${day}` : day}T${time.split(":")[0].length === 1 ? `0${time}` : time}:00.000Z`)
-                    const timestamp = parseInt(moment(date).tz(timezone as string).format("x"))
+                    const utcTime = timeMatch ? timeMatch[0].startsWith("- PM") ? timeMatch[0].slice(5).trim().replace("~", "").trimEnd().replace(" <br />", "").split(":").map((e, i) => !i ? ((parseInt(e) + 12) - 9) < 10 ? `0${((parseInt(e) + 12) - 9)}` : ((parseInt(e) + 12) - 9) : e).join(":") : timeMatch[0].slice(5).trim().replace("~", "").trimEnd().replace(" <br />", "").split(":").map((e, i) => !i ? (parseInt(e) - 3) < 10 ? `0${(parseInt(e) - 3)}` : (parseInt(e) - 3) : e).join(":") : "00:00"
+                    const date = new Date(`${year}-${month}-${day < 10 ? `0${day}` : day}T${utcTime}:00.000Z`)
+                    const timestamp = date.getTime()
 
                     return {
                         name: s.replace(membersMatch ? membersMatch[0] : "", "").replace(/- (PM|AM) .*./gi, "").trimEnd(),
@@ -130,9 +131,9 @@ router.get("/", validator, async (req: Request, res: Response) => {
     const lastDaysOfMonths = [31, parseInt(moment().tz(timezone as string).format("YYYY")) % 4 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     for (const key in columns) result.push(...columns[key])
 
-    if (!cache.get(`calendar/${timezone}`)) cache.set(`calendar/${timezone}`, result.sort((p, n) => p.day > n.day ? 1 : -1).filter(f => f.day <= lastDaysOfMonths[parseInt(moment(new Date(`${year}-${month}-01T22:24:48.281Z`)).format("MM")) - 1]))
+    if (!cache.get(`calendar/${year}/${month}/${timezone}`)) cache.set(`calendar/${year}/${month}/${timezone}`, result.sort((p, n) => p.day > n.day ? 1 : -1).filter(f => f.day <= lastDaysOfMonths[parseInt(moment(new Date(`${year}-${month}-01T22:24:48.281Z`)).format("MM")) - 1]))
 
-    return res.send(cache.get(`calendar/${timezone}`))
+    return res.send(cache.get(`calendar/${year}/${month}/${timezone}`))
 })
 
 export default router

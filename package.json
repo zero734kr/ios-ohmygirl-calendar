@@ -4,7 +4,7 @@
   "private": true,
   "main": "./dist/src/server",
   "scripts": {
-    "test": "tsc && nodemon ./dist/src/server",
+    "test": "ts-node ./src/server",
     "start": "tsc && node ./dist/src/server"
   },
   "dependencies": {
