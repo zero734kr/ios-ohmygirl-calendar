@@ -50,6 +50,7 @@ Day[]
 아, 개발자가 아니라서 뭔 말인지 모르겠다고요? 
 
 ![screenshot.png](https://media.discordapp.net/attachments/745844596176715806/784941858677194822/unknown.png?width=1596&height=186)
+![formatted.png](https://media.discordapp.net/attachments/745844596176715806/784943410707955712/unknown.png?width=368&height=732)
 
 위와 같은 식으로 돌아옵니다.
 
