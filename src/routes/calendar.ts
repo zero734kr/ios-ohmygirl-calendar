@@ -112,7 +112,7 @@ router.get("/", validator, async (req: Request, res: Response) => {
                     else if (membersMatch) members = [membersMatch[0].replace(/\(|\)/gi, "")]
 
                     const utcTime = timeMatch ? timeMatch[0].startsWith("- PM") ? timeMatch[0].slice(5).trim().replace("~", "").trimEnd().replace(" <br />", "").split(":").map((e, i) => !i ? ((parseInt(e) + 12) - 9) < 10 ? `0${((parseInt(e) + 12) - 9)}` : ((parseInt(e) + 12) - 9) : e).join(":") : timeMatch[0].slice(5).trim().replace("~", "").trimEnd().replace(" <br />", "").split(":").map((e, i) => !i ? (parseInt(e) - 3) < 10 ? `0${(parseInt(e) - 3)}` : (parseInt(e) - 3) : e).join(":") : "00:00"
-                    const date = new Date(`${year}-${month}-${day < 10 ? `0${day}` : day}T${utcTime}:00.000Z`)
+                    const date = new Date(`${year}-${month}-${day < 10 ? `0${day}` : day}T${utcTime}:00.000Z`.replace(/ /gi, ""))
                     const timestamp = date.getTime()
 
                     return {
