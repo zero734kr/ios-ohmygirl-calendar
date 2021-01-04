@@ -50,9 +50,9 @@ router.get("/", validator, async (req: Request, res: Response) => {
     const cache: Cache = req.app.get("cache")
     const { year, month, timezone } = req.query as OverrideParsedQs
 
-    if (cache.get(`calendar/${!year ? "now" : year}/${!month ? "now" : month}/${timezone}`)) {
+    if (cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`)) {
         res.setHeader("Is-Cached", "true")
-        return res.send(cache.get(`calendar/${!year ? "now" : year}/${!month ? "now" : month}/${timezone}`))
+        return res.send(cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
     }
 
     let url = "http://ohmy-girl.com/omg_official/schedule.php"
@@ -185,14 +185,14 @@ router.get("/", validator, async (req: Request, res: Response) => {
             message: "Couldn't get data from ohmygirl official website."
         })
     }
-    if (!cache.get(`calendar/${!year ? "now" : year}/${!month ? "now" : month}/${timezone}`))
+    if (!cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
         cache.set(
-            `calendar/${!year ? "now" : year}/${!month ? "now" : month}/${timezone}`,
+            `calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`,
             filteredByDay
         )
 
     res.setHeader("Is-Cached", "false")
-    return res.send(cache.get(`calendar/${!year ? "now" : year}/${!month ? "now" : month}/${timezone}`))
+    return res.send(cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
 })
 
 export default router
