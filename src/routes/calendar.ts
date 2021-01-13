@@ -185,14 +185,14 @@ router.get("/", validator, async (req: Request, res: Response) => {
             message: "Couldn't get data from ohmygirl official website."
         })
     }
-    if (!cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
+    if (!cache.get(`calendar/${ !year ? moment().year() : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
         cache.set(
-            `calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`,
+            `calendar/${!year ? moment().year() : year}/${!month ? moment().month() + 1 : month}/${timezone}`,
             filteredByDay
         )
 
     res.setHeader("Is-Cached", "false")
-    return res.send(cache.get(`calendar/${!year ? !year ? moment().year() : year : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
+    return res.send(cache.get(`calendar/${!year ? moment().year() : year}/${!month ? moment().month() + 1 : month}/${timezone}`))
 })
 
 export default router
