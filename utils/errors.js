@@ -12,9 +12,9 @@ exports.errors = (req, res, error) => {
             query: {
                 source: "query",
                 keys: [
-                    ...Object.keys(error?._original)
+                    ...Object.keys(error ? error._original : error)
                 ],
-                message: error?.details[0].message
+                message: error ? error.details[0].message : error
             }
         }
     })
