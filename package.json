@@ -4,21 +4,20 @@
   "private": true,
   "main": "./dist/src/server",
   "scripts": {
-    "test": "ts-node ./src/server",
-    "start": "tsc && node ./dist/src/server"
+    "test": "vercel dev",
+    "start": "vercel --prod && google-chrome https://ohmygirl.zerokr.xyz/api/calendar"
   },
   "dependencies": {
     "@discordjs/collection": "^0.1.6",
-    "celebrate": "^13.0.4",
+    "@vercel/node": "^1.9.0",
     "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
+    "joi": "^17.3.0",
     "moment-timezone": "^0.5.32",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
     "@types/cheerio": "^0.22.22",
-    "@types/express": "^4.17.9",
     "@types/node": "^14.14.10",
     "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
