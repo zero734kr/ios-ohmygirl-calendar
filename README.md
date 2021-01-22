@@ -63,7 +63,7 @@ interface Day {
 
 Deploy your own Oh My Girl API using [Vercel](https://vercel.com):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/zero734kr/ohmygirl-calendar-api&project-name=ohmygirl-calendar-api&repository-name=ohmygirl-calendar-api)
 
 * Copyright is still with me, [zero734kr](https://github.com/zero734kr). Please respect [LICENSE](https://github.com/zero734kr/ohmygirl-calendar-api/blob/master/LICENSE).
 
