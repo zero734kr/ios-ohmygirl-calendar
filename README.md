@@ -6,8 +6,14 @@
 ## Usage
 
 * GET https://ohmygirl.zerokr.xyz/api/calendar
+  - Response: ``Day[]``
+  
+| Query Params | Type     | Optional | Default         | Description                                                        |
+|--------------|----------|----------|-----------------|-----------------------------------------------------------------------------------------|
+| timezone     | `string` | `true`   | `Asia/Seoul`    | Sets timezone of `Schedule#content` that should be one of supported timezones by MomentJS. |
+| month        | `number` | `true`   | `current month` | Search by schedules on this month. Using with `year` query param is recommended.           |
+| year         | `number` | `true`   | `current year`  | Search by schedules on this year. Using with `month` query param is recommended.           |
 
-들어가시면
 ```ts
 type Member = "효정" | "유아" | "미미" | "승희" | "지호" | "비니" | "아린" | "OH MY GIRL"
 
@@ -23,9 +29,6 @@ interface Day {
     day: number
     schedules: Schedule[]
 }
-
-// returns
-Day[]
 
 // example
 [
@@ -45,37 +48,30 @@ Day[]
     }
 ]
 ```
-식으로 돌아옵니다. 
 
-아, 개발자가 아니라서 뭔 말인지 모르겠다고요? 
+## Synchronizing with your iOS Calendar
 
-![screenshot.png](https://media.discordapp.net/attachments/745844596176715806/784941858677194822/unknown.png?width=1596&height=186)
-![formatted.png](https://media.discordapp.net/attachments/745844596176715806/784943410707955712/unknown.png?width=368&height=732)
+### Calendar Synchronizer
 
-위와 같은 식으로 돌아옵니다.
+* [Install Shortcut](https://www.icloud.com/shortcuts/7a12fd8075e34d3982a82530c934ebdc)
 
-## 스케쥴 캘린더를 달력 앱에 연동
+### Remove calendar events created by Synchronizer
 
-### Synchronizer (스케쥴 달력 연동)
+* [Install Shortcut](https://www.icloud.com/shortcuts/5c8d270f95184fffb0582f9c08737e3f)
 
-* [설치하기(iOS)](https://www.icloud.com/shortcuts/7a12fd8075e34d3982a82530c934ebdc)
+## Deploy your own
 
-### 달력 이벤트 제거 (필터는 본인이 직접 수정)
+Deploy your own Oh My Girl API using [Vercel](https://vercel.com):
 
-* [설치하기(iOS)](https://www.icloud.com/shortcuts/5c8d270f95184fffb0582f9c08737e3f)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/zero734kr/ohmygirl-calendar-api&project-name=ohmygirl-calendar-api&repository-name=ohmygirl-calendar-api)
+
+* Copyright is still with me, [zero734kr](https://github.com/zero734kr). Please respect [LICENSE](https://github.com/zero734kr/ohmygirl-calendar-api/blob/master/LICENSE).
 
 ## Contributions
 
-### 버그, 수정 요청 등등
+* [Issues](https://github.com/zero734kr/ios-ohmygirl-calendar/issues)
+* [Pulls](https://github.com/zero734kr/ios-ohmygirl-calendar/pulls)
 
-* [바로가기](https://github.com/zero734kr/ios-ohmygirl-calendar/issues)
+### Did you liked this project?
 
-### 수정 요청
-
-할 일 없을때마다 틈틈히 짠거라 코드가 좀 스파게티라서 PR 넣어주시면 감사하겠습니다.
-
-* [바로가기](https://github.com/zero734kr/ios-ohmygirl-calendar/pulls)
-
-### 이 프로젝트가 마음에 든다면?
-
-우측 상단의 Star 버튼을 눌러주세요!
+* Give a star for it!
