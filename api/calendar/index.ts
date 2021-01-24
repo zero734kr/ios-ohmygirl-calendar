@@ -1,9 +1,10 @@
 import { NowRequest, NowResponse, VercelResponse } from "@vercel/node"
-import { errors } from "../../utils/errors"
-import Joi from "joi"
+import Validation, { Joi, Segments } from "../../middlewares/joi"
+import { Method } from "../../middlewares/method"
 import moment from "moment-timezone"
 import cheerio from "cheerio"
 import fetch from "node-fetch"
+import { runMiddleware, runMiddlewareSync } from "../../middlewares"
 
 type Member = "효정" | "유아" | "미미" | "승희" | "지호" | "비니" | "아린" | "OH MY GIRL"
 
@@ -24,19 +25,20 @@ interface OverrideParsedQs {
     [key: string]: undefined | string | string[] | number
 }
 
-const validator = Joi.object().keys({
-    year: Joi.number().min(2015),
-    month: Joi.number().min(1).max(12),
-    timezone: Joi.string().default("Asia/Seoul")
+const validator = Validation({
+    [Segments.QUERY]: Joi.object().keys({
+        year: Joi.number().min(2015),
+        month: Joi.number().min(1).max(12),
+        timezone: Joi.string().default("Asia/Seoul")
+    })
 })
 
 async function Calendar(req: NowRequest, res: NowResponse): Promise<void | VercelResponse> {
-    const validated = validator.validate(req.query, {
-        debug: process.env.NODE_ENV !== "production",
-        cache: true
-    })
+    const isAllowedMethod = runMiddlewareSync<boolean | void>(req, res, Method("GET"))
+    if (!isAllowedMethod) return
 
-    if(validated.error) return errors(req, res, validated.error)
+    const validated = await runMiddleware<boolean | void>(req, res, validator)
+    if (!validated) return
 
     const { timezone = "Asia/Seoul", year, month } = req.query as OverrideParsedQs
 
@@ -62,12 +64,12 @@ async function Calendar(req: NowRequest, res: NowResponse): Promise<void | Verce
             .trimEnd())
         const day = parseInt(dayele.children[1].children[0]?.data || "99999" as string)
 
-        if(!dayele.children[1].children[0]?.data 
-                && !schedule.length
-                && day === 99999) continue
+        if (!dayele.children[1].children[0]?.data
+            && !schedule.length
+            && day === 99999) continue
 
         if (day < 1) continue
-        
+
         const schedules = schedule.map(s => {
             const membersMatch = s.match(/ \((.*?)\)/g)?.map(e => e.slice(1))
             const timeMatch = s.match(/(PM|AM) .*./gi)
@@ -84,7 +86,7 @@ async function Calendar(req: NowRequest, res: NowResponse): Promise<void | Verce
 
             const realYear = year ?? moment().format("YYYY")
             const realMonth = month ?? moment().format("MM")
-                    
+
             const utcTime = moment.tz(new Date(`${realYear}-${realMonth}-${day < 10 ? `0${day}` : day}T${time.split(":").map((v, i) => !i
                 ? parseInt(v) < 10
                     ? `0${v}`
